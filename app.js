@@ -153,6 +153,128 @@ app.get("/view-student", async (req, res) => {
 });
 
 
+// Delete Bus 
+app.delete("/delete-bus/:busNumber", async (req, res) => {
+    try {
+      await Bus.findOneAndDelete({ busNumber: req.params.busNumber });
+  
+      res.json({
+        status: "success",
+        message: "Bus Deleted Successfully"
+      });
+  
+    } catch (error) {
+      res.status(500).json({
+        status: "error",
+        message: error.message
+      });
+    }
+  });
+
+  //Delete Driver
+
+  app.delete("/delete-driver/:driverId", async (req, res) => {
+    try {
+      await Driver.findOneAndDelete({ driverId: req.params.driverId });
+  
+      res.json({
+        status: "success",
+        message: "Driver Deleted Successfully"
+      });
+  
+    } catch (error) {
+      res.status(500).json({
+        status: "error",
+        message: error.message
+      });
+    }
+  });
+
+  //Delete student
+
+  app.delete("/delete-student/:studentId", async (req, res) => {
+    try {
+      await Student.findOneAndDelete({
+        studentId: req.params.studentId
+      });
+  
+      res.json({
+        status: "success",
+        message: "Student Deleted Successfully"
+      });
+  
+    } catch (err) {
+      res.status(500).json({
+        status: "error",
+        message: err.message
+      });
+    }
+  });
+
+  // Search Bus
+app.post("/search-bus", async (req, res) => {
+    try {
+      const data = await Bus.findOne({
+        busNumber: req.body.busNumber
+      });
+  
+      if (data) {
+        res.json(data);
+      } else {
+        res.json({
+          status: "Not Found",
+          message: "Bus not found"
+        });
+      }
+  
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+
+  // Search Driver
+app.post("/search-driver", async (req, res) => {
+    try {
+      const data = await Driver.findOne({
+        driverId: req.body.driverId
+      });
+  
+      if (data) {
+        res.json(data);
+      } else {
+        res.json({
+          status: "Not Found",
+          message: "Driver not found"
+        });
+      }
+  
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+
+  // Search Student
+app.post("/search-student", async (req, res) => {
+    try {
+      const data = await Student.findOne({
+        studentId: req.body.studentId
+      });
+  
+      if (data) {
+        res.json(data);
+      } else {
+        res.json({
+          status: "Not Found",
+          message: "Student not found"
+        });
+      }
+  
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+
+
 
 // ====================== SERVER ==========================
 
