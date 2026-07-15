@@ -152,6 +152,45 @@ app.get("/view-student", async (req, res) => {
   }
 });
 
+// Delete Student
+app.delete("/delete-student/:id", async (req, res) => {
+    try {
+      await Student.findByIdAndDelete(req.params.id);
+  
+      res.json({
+        status: "success",
+        message: "Student Deleted Successfully"
+      });
+  
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+  // Remove Bus Fee 
+  app.delete("/remove-fee/:id", async (req, res) => {
+    try {
+      await Student.findByIdAndUpdate(req.params.id, {
+        $unset: {
+          feeId: "",
+          amount: "",
+          dueDate: "",
+          paymentMode: "",
+          feeStatus: ""
+        }
+      });
+  
+      res.json({
+        status: "success",
+        message: "Bus Fee Removed Successfully"
+      });
+  
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+
+  
+
 
 // ====================== SERVER ==========================
 
