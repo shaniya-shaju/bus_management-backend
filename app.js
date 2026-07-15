@@ -166,30 +166,6 @@ app.delete("/delete-student/:id", async (req, res) => {
       res.status(500).json(err);
     }
   });
-  // Remove Bus Fee 
-  app.delete("/remove-fee/:id", async (req, res) => {
-    try {
-      await Student.findByIdAndUpdate(req.params.id, {
-        $unset: {
-          feeId: "",
-          amount: "",
-          dueDate: "",
-          paymentMode: "",
-          feeStatus: ""
-        }
-      });
-  
-      res.json({
-        status: "success",
-        message: "Bus Fee Removed Successfully"
-      });
-  
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
-
-  
 
 
 // ====================== SERVER ==========================
