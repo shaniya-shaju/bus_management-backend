@@ -152,56 +152,6 @@ app.get("/view-student", async (req, res) => {
   }
 });
 
-// Delete Student
-app.delete("/delete-student/:id", async (req, res) => {
-    try {
-      await Student.findByIdAndDelete(req.params.id);
-  
-      res.json({
-        status: "success",
-        message: "Student Deleted Successfully"
-      });
-  
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
-
-  // Delete Driver
-app.delete("/delete-driver/:id", async (req, res) => {
-    try {
-      await Driver.findByIdAndDelete(req.params.id);
-  
-      res.json({
-        status: "success",
-        message: "Driver Deleted Successfully"
-      });
-  
-    } catch (error) {
-      res.status(500).json({
-        status: "error",
-        message: error.message
-      });
-    }
-  });
-
-  // Delete Bus
-app.delete("/delete-bus/:id", async (req, res) => {
-    try {
-      await Bus.findByIdAndDelete(req.params.id);
-  
-      res.json({
-        status: "success",
-        message: "Bus Deleted Successfully"
-      });
-  
-    } catch (error) {
-      res.status(500).json({
-        status: "error",
-        message: error.message
-      });
-    }
-  });
 
 
 // ====================== SERVER ==========================
